@@ -20,6 +20,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.db.hooks.DBHooks;
+import com.db.utils.DBHelperMethods;
+import com.db.utils.HelperMethods;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -37,10 +39,18 @@ public class DBCareerDefinitions{
     public static int brokenLinksCount=0;
     public static int jobCountOnJObSearchPage;
     public static String cityBeSelected;
+    public HelperMethods hm;
+    public DBHelperMethods dhm;
+    
+    public DBCareerDefinitions() {
+    	driver = DBHooks.getDriver();
+    	hm=new HelperMethods();
+    	dhm = new DBHelperMethods();
+    }
     
 	@Given("User is on Deutsche Bank career page")
 	public void user_is_on_deutsche_bank_career_page() {
-		driver = DBHooks.getDriver();
+		
 	    driver.get("https://careers.db.com");
        // WebElement shadowHost = driver.findElement(By.cssSelector("shadowHost_CSS"));
      // get the shadow root
@@ -176,7 +186,7 @@ public class DBCareerDefinitions{
 	public void user_clicks_search_button_without_applying_any_filters() {
 		
 		WebElement el = driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[3]"));
-		jobCountOnJObSearchPage=extractintFromString(el);
+		jobCountOnJObSearchPage=hm.extractintFromString(el);
 		System.out.println(jobCountOnJObSearchPage);
 	    driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[2]/a")).click();
 	}
@@ -191,7 +201,7 @@ public class DBCareerDefinitions{
 	@Then("Verify Number of job results displayed on the page")
 	public void Verify_Number_of_results_displayed_on_the_page() {
 		WebElement el = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[2]/div/div[1]/div[1]"));
-		int jobCountOnJobResultPage=extractintFromString(el);
+		int jobCountOnJobResultPage=hm.extractintFromString(el);
 		List<WebElement> listOfJobs = driver.findElements(By.xpath("//*[@class='yello-search-result']/div/div/div/a"));
 		if(listOfJobs.size()<10) {
 			Assertions.assertThat(listOfJobs.size()).isEqualTo(jobCountOnJobResultPage);
@@ -204,7 +214,7 @@ public class DBCareerDefinitions{
 	    
 	    //Verify count of jobs is correct by getting count on top of te page
 	    WebElement el = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[2]/div/div[1]/div[1]"));
-		int jobCountOnJobResultPage=extractintFromString(el);
+		int jobCountOnJobResultPage=hm.extractintFromString(el);
 		System.out.println(jobCountOnJobResultPage);
 		Assertions.assertThat(jobCountOnJObSearchPage).isEqualTo(jobCountOnJobResultPage);
 		
@@ -223,9 +233,9 @@ public class DBCareerDefinitions{
 		WebElement DivisionCategory=  driver.findElement(By.xpath("//*[@class='select-wrapper']/div[2]/div/div[2]/div"));
 		By ListOfWebElements = By.xpath("//*[@class='select-wrapper']/div[2]/div/div[2]/ul/li");
 		String DivisionBeSelected="Human Resources";
-		selectValueFromDropdown(DivisionCategory , ListOfWebElements , DivisionBeSelected);
-		
+		dhm.selectValueFromDropdown(DivisionCategory , ListOfWebElements , DivisionBeSelected);
 		/*WebElement country=  driver.findElement(By.xpath("//*[@class='select-wrapper']/div[3]/div[1]/div[2]/div[1]"));
+		
 		By ListOfWebElements2 = By.xpath("//*[@class='select-wrapper']/div[3]/div/div[2]/ul/li");
 		String CountryBeSelected="India";
 		selectValueFromDropdown(country , ListOfWebElements2 , CountryBeSelected);
@@ -245,7 +255,7 @@ public class DBCareerDefinitions{
 	@And("User clicks Search button")
 	public void user_clicks_search_button() {
 		WebElement el = driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[3]"));
-		jobCountOnJObSearchPage=extractintFromString(el);
+		jobCountOnJObSearchPage=hm.extractintFromString(el);
 		System.out.println(jobCountOnJObSearchPage);
 	    driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[2]/a")).click();
 	}
@@ -263,7 +273,7 @@ public class DBCareerDefinitions{
 		
 	public void verify_job_count_matches_with_the_total_jobs_on_the_page() {
 		WebElement CountofJobs=driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[2]/div/div[1]/div[1]"));
-		int totaljobs=extractintFromString(CountofJobs);
+		int totaljobs=hm.extractintFromString(CountofJobs);
 		System.out.println("Jobs on top of Page = "+totaljobs);
 		JavascriptExecutor js = (JavascriptExecutor)driver; 
 			js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -288,39 +298,5 @@ public class DBCareerDefinitions{
 	   System.out.println("String count Matches");
 	
 }
-
-	public void selectValueFromDropdown(WebElement dropdownbox , By listboxxpath , String valueToBeSelected) {
-
-		   Actions ac = new Actions(driver);
-		   WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(20));
-		   w.until(ExpectedConditions.elementToBeClickable(dropdownbox));
-		   ac.moveToElement(dropdownbox).click().build().perform();
-		    List<WebElement> listbox = driver.findElements(listboxxpath);
-		   // System.out.println(listbox.size());
-		    for(WebElement el1 : listbox) {
-		    	//System.out.println(el1.getText());
-		    	if(el1.getText().contains(valueToBeSelected)) {
-		    		w.until(ExpectedConditions.elementToBeClickable(el1));
-		    		ac.moveToElement(el1).click().build().perform();
-		    		break;
-		    	}
-		    }
-			try {
-				Thread.sleep(3000);
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-	}
-	
-	
-	
-	public int extractintFromString(WebElement el) {
-		
-		String str = el.getText();
-		str = str.replaceAll("[^0-9]", "");
-		int number = Integer.parseInt(str);
-		return number;
-	}
-	
 	
 }
