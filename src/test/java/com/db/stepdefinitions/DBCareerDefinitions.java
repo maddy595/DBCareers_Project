@@ -93,6 +93,50 @@ public class DBCareerDefinitions {
 	    Assertions.assertThat(s).isEqualTo(expected);
 	    
 	}
+	
+	@Then("On clicking Search Roles under professionsal tab user is able to view Jobs search page")
+	public void on_clicking_search_roles_under_professionsal_tab_user_is_able_to_view_jobs_search_page() {
+		Actions ac = new Actions(driver);
+	    WebElement el = driver.findElement(By.xpath("//*[@id='professionals_top']/a"));
+	    ac.moveToElement(el).perform();
+	    el = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a"));
+	    ac.moveToElement(el).click().build().perform();
+	    String s = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[1]/div/h3")).getText();
+	    System.out.println(s);
+	    String expected = "Search by:";
+	    Assertions.assertThat(s).isEqualTo(expected);
+	}
+	@Then("On clicking more button under professionsal section user is able to view Jobs search page")
+	public void on_clicking_more_button_under_professionsal_section_user_is_able_to_view_jobs_search_page() {
+	    driver.findElement(By.xpath("/html/body/nav[1]/div/ul/li[6]/a")).click();
+	    Actions ac = new Actions(driver);
+	    WebElement el = driver.findElement(By.xpath("//*[contains(text(),'Discover the opportunity for you')]//following::a[1]"));
+	    ac.moveToElement(el).click().build().perform();
+	    String s = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[1]/div/h3")).getText();
+	    System.out.println(s);
+	    String expected = "Search by:";
+	    Assertions.assertThat(s).isEqualTo(expected);
+	    
+	}
+	@Then("On clicking View and Apply button on Your application user is able to view Jobs search page")
+	public void on_clicking_view_and_apply_button_on_your_application_user_is_able_to_view_jobs_search_page() {
+		Actions ac = new Actions(driver);
+	    WebElement el = driver.findElement(By.xpath("//*[@id='professionals_top']/a"));
+	    ac.moveToElement(el).perform();
+	    el = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[2]/a"));
+	    ac.moveToElement(el).click().build().perform();
+	    JavascriptExecutor js = (JavascriptExecutor)driver;
+	    js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+	    driver.findElement(By.xpath("//*[@id='content']/section[5]/div/div/div/section/div/div/a")).click();
+	    el =driver.findElement(By.xpath("//*[@id='content']/section[5]/div/div/div/section/div/div/div[7]/div[2]/div/a"));
+	    js.executeScript("arguments[0].click()", el);
+	    
+	    String s = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[1]/div/h3")).getText();
+	    System.out.println(s);
+	    String expected = "Search by:";
+	    Assertions.assertThat(s).isEqualTo(expected);
+	    
+	}
 
 	@Then("User is able to view Search Roles,FAQ, Professionals and  A notice on Recruitment Scams link")
 	public void user_is_able_to_view_search_roles_faq_professionals_and_link() {
