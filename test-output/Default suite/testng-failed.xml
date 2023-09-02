@@ -6,8 +6,8 @@
       <class name="com.db.testRunner.Runner">
         <methods>
           <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="2 5"/>
           <include name="tearDownClass"/>
-          <include name="runScenario" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.db.testRunner.Runner -->
     </classes>
