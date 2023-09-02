@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="6" passed="4" failed="2" skipped="0">
+<testng-results ignored="0" total="9" passed="8" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-09-02T11:47:15 IST" name="Default suite" finished-at="2023-09-02T11:50:34 IST" duration-ms="198391">
+  <suite started-at="2023-09-02T22:16:14 IST" name="Suite" finished-at="2023-09-02T22:23:34 IST" duration-ms="440542">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-09-02T11:47:15 IST" name="Default test" finished-at="2023-09-02T11:50:34 IST" duration-ms="198391">
+    <test started-at="2023-09-02T22:16:14 IST" name="DBJobSearchTest" finished-at="2023-09-02T22:23:34 IST" duration-ms="440542">
       <class name="com.db.testRunner.Runner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:47:15 IST" name="setUpClass" finished-at="2023-09-02T11:47:17 IST" duration-ms="1363" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:16:14 IST" name="setUpClass" finished-at="2023-09-02T22:16:15 IST" duration-ms="1430" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@3313d477]]>
+                <![CDATA[org.testng.TestRunner@1f4d38f9]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:47:17 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T11:47:40 IST" duration-ms="23915" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:16:15 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:16:37 IST" duration-ms="22176" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -37,7 +37,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:47:40 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T11:47:52 IST" duration-ms="11067" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:16:37 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:16:49 IST" duration-ms="11418" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -53,7 +53,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:47:52 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T11:48:49 IST" duration-ms="57722" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:16:49 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:17:34 IST" duration-ms="45477" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -66,33 +66,10 @@
               </value>
             </param>
           </params>
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[Unable to find element with locator By.xpath: //*[@id='job-module']/div/div/div/div/div[1]/div/h3
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
-Driver info: driver.version: RemoteWebDriver]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //*[@id='job-module']/div/div/div/div/div[1]/div/h3
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
-Driver info: driver.version: RemoteWebDriver
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-at com.db.stepdefinitions.DBCareerDefinitions.on_clicking_view_and_apply_button_on_your_application_user_is_able_to_view_jobs_search_page(DBCareerDefinitions.java:124)
-at ✽.On clicking View and Apply button on Your application user is able to view Jobs search page(file:///C:/Users/HP/eclipse-workspace/DBCareers_Project/src/test/resources/features/JobSearch.feature:25)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:48:49 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T11:49:31 IST" duration-ms="42044" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:17:34 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:18:25 IST" duration-ms="51392" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -105,10 +82,25 @@ at ✽.On clicking View and Apply button on Your application user is able to vie
               </value>
             </param>
           </params>
+          <exception class="org.junit.ComparisonFailure">
+            <message>
+              <![CDATA[expected:<[0]> but was:<[1]>]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.junit.ComparisonFailure: expected:<[0]> but was:<[1]>
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at com.db.stepdefinitions.DBCareerDefinitions.there_should_be_no_broken_links_on_the_page(DBCareerDefinitions.java:184)
+at ✽.There should be no broken links on the page(file:///C:/Users/HP/eclipse-workspace/DBCareers_Project/src/test/resources/features/JobSearch.feature:32)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.junit.ComparisonFailure -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:49:31 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T11:49:49 IST" duration-ms="17550" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:18:25 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:18:43 IST" duration-ms="17411" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -124,7 +116,7 @@ at ✽.On clicking View and Apply button on Your application user is able to vie
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:49:49 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T11:50:33 IST" duration-ms="44603" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:18:43 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:19:55 IST" duration-ms="71962" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -137,57 +129,62 @@ at ✽.On clicking View and Apply button on Your application user is able to vie
               </value>
             </param>
           </params>
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='divisionProf']"}
-  (Session info: MicrosoftEdge=116.0.1938.62)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
-Driver info: org.openqa.selenium.edge.EdgeDriver
-Command: [24d5da35030f567e5871188730696e38, findElement {using=xpath, value=//*[@id='divisionProf']}]
-Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 116.0.1938.62, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:53715}, msedge: {msedgedriverVersion: 116.0.1938.62 (493f2197e519..., userDataDir: C:\Users\HP\AppData\Local\T...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53715/devtoo..., se:cdpVersion: 116.0.1938.62, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 24d5da35030f567e5871188730696e38]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id='divisionProf']"}
-  (Session info: MicrosoftEdge=116.0.1938.62)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.8.0', revision: '267030adea'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
-Driver info: org.openqa.selenium.edge.EdgeDriver
-Command: [24d5da35030f567e5871188730696e38, findElement {using=xpath, value=//*[@id='divisionProf']}]
-Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 116.0.1938.62, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:53715}, msedge: {msedgedriverVersion: 116.0.1938.62 (493f2197e519..., userDataDir: C:\Users\HP\AppData\Local\T...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:53715/devtoo..., se:cdpVersion: 116.0.1938.62, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 24d5da35030f567e5871188730696e38
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-at com.db.stepdefinitions.DBCareerDefinitions.user_selects_division_in_search_by_section(DBCareerDefinitions.java:226)
-at ✽.User selects Division in Search By section(file:///C:/Users/HP/eclipse-workspace/DBCareers_Project/src/test/resources/features/JobSearchFilters.feature:19)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.db.testRunner.Runner@6bd61f98]" started-at="2023-09-02T11:50:33 IST" name="tearDownClass" finished-at="2023-09-02T11:50:34 IST" duration-ms="50" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:19:55 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:20:58 IST" duration-ms="62728" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify user is able to search jobs by Division and is able to see relevant results after applying necessary filters in Search By section"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Search and Validate Job Openings"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:20:58 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:22:14 IST" duration-ms="76728" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Search and Validate Job Openings"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:22:14 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-09-02T22:23:34 IST" duration-ms="79684" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Search and Validate Job Openings"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.db.testRunner.Runner@1189dd52]" started-at="2023-09-02T22:23:34 IST" name="tearDownClass" finished-at="2023-09-02T22:23:34 IST" duration-ms="47" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- com.db.testRunner.Runner -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- DBJobSearchTest -->
+  </suite> <!-- Suite -->
 </testng-results>

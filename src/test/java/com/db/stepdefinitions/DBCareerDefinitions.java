@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
@@ -23,6 +25,7 @@ import com.db.hooks.DBHooks;
 import com.db.utils.DBHelperMethods;
 import com.db.utils.HelperMethods;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -221,19 +224,38 @@ public class DBCareerDefinitions{
 		
 	}
 	
-	@And("User selects Division in Search By section")
-	public void user_selects_division_in_search_by_section() {
-	    WebElement division = driver.findElement(By.xpath("//*[@id='divisionProf']"));
+	@And("User selects {string} in Search By section")
+	public void user_selects_division_in_search_by_section(String searchBy) {
+	    WebElement radiobutton = driver.findElement(By.xpath("//label[contains(text(),'"+searchBy+"')]"));
 	    Actions ac = new Actions(driver);
-	    ac.moveToElement(division).click().build().perform();
+	    ac.moveToElement(radiobutton).click().build().perform();
 	}
 
 	@And("User selects division category and other filters")
-	public void user_selects_division_category_and_other_filters() {
-		WebElement DivisionCategory=  driver.findElement(By.xpath("//*[@class='select-wrapper']/div[2]/div/div[2]/div"));
-		By ListOfWebElements = By.xpath("//*[@class='select-wrapper']/div[2]/div/div[2]/ul/li");
-		String DivisionBeSelected="Human Resources";
-		dhm.selectValueFromDropdown(DivisionCategory , ListOfWebElements , DivisionBeSelected);
+	public void user_selects_division_category_and_other_filters(DataTable selectionValues) {
+		
+		selectionValues.asMaps().get(0).forEach((k,v)->{ 
+			WebElement genericDivCategory = driver.findElement(By.xpath("//*[text()='"+k+"']/../div[2]/div"));
+			
+			if(null != v && !v.isEmpty()) {
+				By genericList = By.xpath("//*[contains(text(),'"+k+"')]/../div[2]/ul/li");
+				dhm.selectValueFromDropdown(genericDivCategory , genericList , v);
+			}
+			
+		});
+		
+		/*
+		 * WebElement DivisionCategory= driver.findElement(By.xpath(
+		 * "//*[@class='select-wrapper']/div[2]/div/div[2]/div")); By ListOfWebElements
+		 * = By.xpath("//*[@class='select-wrapper']/div[2]/div/div[2]/ul/li"); String
+		 * DivisionBeSelected="Human Resources";
+		 * dhm.selectValueFromDropdown(DivisionCategory , ListOfWebElements ,
+		 * DivisionBeSelected);
+		 */
+		
+		
+		System.out.println("--");
+		
 		/*WebElement country=  driver.findElement(By.xpath("//*[@class='select-wrapper']/div[3]/div[1]/div[2]/div[1]"));
 		
 		By ListOfWebElements2 = By.xpath("//*[@class='select-wrapper']/div[3]/div/div[2]/ul/li");
@@ -260,13 +282,40 @@ public class DBCareerDefinitions{
 	    driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[2]/a")).click();
 	}
 
-	@And("Verify job search results page jobs from right city user has searched")
-	public void verify_job_search_results_page_is_displayed_with_right_jobs_that_user_has_searched() {
-	    driver.findElement(By.xpath("//*[@class='yello-search-result']/div/div/div/a/div/h2")).click();
+	@And("Verify job search results page shows jobs from user has searched")
+	public void verify_job_search_results_page_is_displayed_with_right_jobs_that_user_has_searched(DataTable userSelectedOptions) {
+		 driver.findElement(By.xpath("//*[@class='yello-search-result']/div/div/div/a/div/h2")).click();
+		List<Map<String, String>> lst = userSelectedOptions.asMaps();
+		
+		for(Map<String, String> mp   : lst) {
+			for(Entry<String, String> es:mp.entrySet()) {
+				if(es.getValue()!=null && !es.getValue().isEmpty()) {
+				if("City".equals(es.getKey())) {
+					String cityFromJobPage = driver.findElement(By.xpath("//*[@id='headerbox']/table/tbody/tr[3]/td")).getText();
+					//cityFromJobPage.contains(es.getValue())
+					
+					Assertions.assertThat(cityFromJobPage.contains(es.getValue())).as("City does not match").isEqualTo(true);
+					
+				}else if ("What is your availability?".equals(es.getKey())) {
+					String FromJobPage = driver.findElement(By.xpath( "//*[@id='headerbox']/table/tbody/tr[1]/td[2]")).getText();
+					Assertions.assertThat(FromJobPage.contains(es.getValue())).as("Availability does not match").isEqualTo(true);
+					
+				}else {
+					System.out.println("Assertion not supported for "+es.getKey());
+					Assertions.assertThat(true).isEqualTo(false).as("");
+				}
+				
+				}
+				
+				
+			}
+		}
+		
+	   /*
 	    String xpath="//*[text()[contains(., ': "+cityBeSelected+"')]]";
 	    String displayedCity = driver.findElement(By.xpath("xpath")).getText();
 	    System.out.println(displayedCity);
-	    Assertions.assertThat(displayedCity).contains(cityBeSelected);
+	    Assertions.assertThat(displayedCity).contains(cityBeSelected);*/
 	}
 
 	@Then("Verify job count matches with the total jobs on the page")
