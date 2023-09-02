@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="DBJobSearchTest(failed)">
+    <classes>
+      <class name="com.db.testRunner.Runner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="3"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- com.db.testRunner.Runner -->
+    </classes>
+  </test> <!-- DBJobSearchTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

@@ -11,17 +11,44 @@ Feature: Search and Validate Job Openings
     And Verify job position count matches the one displayed on job search page
     And Verify Number of job results displayed on the page
 
-  @Sanity @regression @Test6
-  Scenario: Verify user is able to search jobs by Division and is able to see relevant results after applying necessary filters in Search By section
+  @MyDatTable @Sanity @regression @Test6
+  Scenario Outline: Verify user is able to search jobs by Division and is able to see relevant results after applying necessary filters in Search By section
     Given User is on Deutsche Bank career page
     When User hovers mouse over Professionals link
     And User clicks on Search Roles
-    And User selects Division in Search By section
+    And User selects "Division" in Search By section
     And User selects division category and other filters
+      | Division Category | Country   | City   | Corporate title   | I want to work | What is your availability? |
+      | <div_category>    | <country> | <city> | <corporate_title> | <job_type>     | <availability>             |
     And User clicks Search button
     And Verify job count matches with the total jobs on the page
-    And Verify job search results page jobs from right city user has searched
-    
+    And Verify job search results page shows jobs from user has searched
+    | City   |What is your availability? |
+    | <city> | Full-time             |
+
+    Examples: 
+      | div_category   | country | city   | corporate_title          | job_type  | availability |
+      | Corporate Bank | India   | Mumbai | Assistant Vice President | Permanent | Full time    |
+      | Chairman       | India   | Pune       |                          |           |              |
+
+  @MyDatTable2 @Sanity @regression @Test7
+  Scenario Outline: Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section
+    Given User is on Deutsche Bank career page
+    When User hovers mouse over Professionals link
+    And User clicks on Search Roles
+    And User selects "Profession" in Search By section
+    And User selects division category and other filters
+      | Profession Category | Profession   | Country   | City   | Corporate title   | I want to work | What is your availability? |
+      | <prof_category>     | <profession> | <country> | <city> | <corporate_title> | <job_type>     | <availability>             |
+    And User clicks Search button
+    And Verify job count matches with the total jobs on the page
+    And Verify job search results page shows jobs from user has searched
+    | City   |What is your availability? |
+    | <city> | Full-time             |
+    Examples: 
+      | prof_category | profession  | country | city      | corporate_title | job_type  | availability |
+      | Operations    | Operations  | India   | Mumbai    | Associate       | Permanent | Full time    |
+      | Technology    | Engineering | Germany | Frankfurt |                 |           |              |
   #@Sanity @regression @Test1
   #Scenario: Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section
   #Given User is on Deutsche Bank career page
