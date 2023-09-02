@@ -1,7 +1,7 @@
 Feature: Search and Validate Job Openings
   Description: 	This feature focuses on searching and validating jobs openings on Deutsche banks career page.
 
-  @Sanity @regression @Test1
+  @Sanity @regression @Test5
   Scenario: Verify job positions when user views all the open positions without applying any filters in Search By section
     Given User is on Deutsche Bank career page
     When User hovers mouse over Professionals link
@@ -11,7 +11,7 @@ Feature: Search and Validate Job Openings
     And Verify job position count matches the one displayed on job search page
     And Verify Number of job results displayed on the page
 
-  @Sanity @regression @Test1
+  @Sanity @regression @Test6
   Scenario: Verify user is able to search jobs by Division and is able to see relevant results after applying necessary filters in Search By section
     Given User is on Deutsche Bank career page
     When User hovers mouse over Professionals link
