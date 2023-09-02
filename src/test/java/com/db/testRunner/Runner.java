@@ -4,8 +4,8 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(features = "src/test/resources/features",
-				 glue = "com.db.stepdefinitions",
-				 dryRun =true,
+				 glue = {"com.db.stepdefinitions","com.db.hooks"},
+				// dryRun =true,
 				 plugin = {"pretty", "html:target/test-output/report.html"}
 				// monochrome=true
 				)

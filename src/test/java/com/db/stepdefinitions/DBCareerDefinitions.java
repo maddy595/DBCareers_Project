@@ -19,6 +19,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.db.hooks.DBHooks;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -29,39 +31,17 @@ import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions.*;
 
 
-public class DBCareerDefinitions {
-	
-	private static WebDriver driver;     
+public class DBCareerDefinitions{
+   public WebDriver driver;
     public final static int TIMEOUT = 50;
     public static int brokenLinksCount=0;
     public static int jobCountOnJObSearchPage;
     public static String cityBeSelected;
     
-	@Before
-    public void setUp(Scenario scenario) {
-		EdgeOptions options = new EdgeOptions();
-		options.addArguments("--remote-allow-origins=*");
-        driver = new EdgeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
-        driver.manage().window().maximize();
-        
-        	for(String tag : scenario.getSourceTagNames()){
-        		System.out.print("Tag: " + tag);
-        	}	 
-    }
-	
-	@After
-    public void tearDown() {
-		driver.quit();
-    }
-	
-	
 	@Given("User is on Deutsche Bank career page")
 	public void user_is_on_deutsche_bank_career_page() {
-		
+		driver = DBHooks.getDriver();
 	    driver.get("https://careers.db.com");
-	    //Accept cookies and continue
-	    
        // WebElement shadowHost = driver.findElement(By.cssSelector("shadowHost_CSS"));
      // get the shadow root
         SearchContext se= driver.findElement(By.xpath("//*[@id='usercentrics-root']")).getShadowRoot();
