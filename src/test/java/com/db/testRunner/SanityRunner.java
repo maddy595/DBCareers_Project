@@ -15,27 +15,16 @@ import com.db.utils.ConfigReader;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(features = "src/test/resources/features/jobSearchFilters.feature",
+@CucumberOptions(features = "src/test/resources/features",
 				 glue = {"com.db.stepdefinitions"},
 						// "com.db.hooks"},
 				 plugin = {"pretty", "html:target/test-output/report.html"},
-				 tags = "@sanity"
+				// tags = "@sanity"
+				 tags = "@Test2"
 				// ,dryRun=true
 				 //monochrome=true
 				)
-public class SanityRunner extends AbstractTestNGCucumberTests{
+public class SanityRunner extends AbstractDBTestNGRunner{
 	
-	@Parameters("browserType")
-	@BeforeTest
-	public static void defineBrowser( String browser) throws IOException {
-			ConfigReader.initializePropertyFile();
-			ConfigReader.prop.setProperty("BrowserType",browser );
-	}
-	
-	@AfterMethod
-	public static void QuitBrowser() throws IOException {
-			//ConfigReader.initializePropertyFile();
-			DBCareerDefinitions.driver.quit();
-	}
 	
 }
