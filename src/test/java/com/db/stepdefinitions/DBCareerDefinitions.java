@@ -22,6 +22,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.db.hooks.DBHooks;
 import com.db.utils.ConfigReader;
@@ -45,6 +46,7 @@ public class DBCareerDefinitions{
     public static int brokenLinksCount=0;
     public static int jobCountOnJObSearchPage;
     public static String cityBeSelected;
+    public static String ExpectedValue;
     public HelperMethods hm;
     public DBHelperMethods dhm;
     
@@ -79,7 +81,6 @@ public class DBCareerDefinitions{
 		
 		
 	    driver.get("https://careers.db.com");
-       // WebElement shadowHost = driver.findElement(By.cssSelector("shadowHost_CSS"));
      // get the shadow root
         SearchContext se= driver.findElement(By.xpath("//*[@id='usercentrics-root']")).getShadowRoot();
       
@@ -177,7 +178,7 @@ public class DBCareerDefinitions{
 	
 	}
 	
-	@When("User check for any broken links on the page")
+	@When("User checks for any broken links on the page")
 	public void user_check_for_any_broken_links_on_the_page() {
 	    List<WebElement> lis = driver.findElements(By.xpath("//*[contains(@href,'professionals')]"));
 	    System.out.println(lis.size());
@@ -193,11 +194,14 @@ public class DBCareerDefinitions{
 				if (conn.getResponseCode() == 200) {
 						System.out.println(url + " - " + conn.getResponseMessage());
 					}else{
-						System.out.println(url + " - " + conn.getResponseMessage() + " - " + "is a broken link");
+						System.out.println(conn.getResponseCode());
+						//System.out.println(url + " - " + conn.getResponseMessage() + " - " + "is a broken link");
 						brokenLinksCount++;
 					}
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.getMessage();
+			}finally {
+				conn.disconnect();
 			}
 	    }
 	}
@@ -205,8 +209,14 @@ public class DBCareerDefinitions{
 	@Then("There should be no broken links on the page")
 	public void there_should_be_no_broken_links_on_the_page() {
 	    if(brokenLinksCount>0) {
+	    	System.out.println("There is/are - " +brokenLinksCount+ " broken link/links on the page");
 	    	Assertions.assertThat(brokenLinksCount).isEqualTo(0);
 	    }
+	}
+	
+	@Given("User is on Job search Page")
+	public void User_is_on_Job_Search_Page() {
+		System.out.println("User is on Job Search Page");
 	}
 	
 	@When("User clicks Search button without applying any filters")
@@ -267,17 +277,6 @@ public class DBCareerDefinitions{
 			}
 			
 		});
-		
-		/*
-		 * WebElement DivisionCategory= driver.findElement(By.xpath(
-		 * "//*[@class='select-wrapper']/div[2]/div/div[2]/div")); By ListOfWebElements
-		 * = By.xpath("//*[@class='select-wrapper']/div[2]/div/div[2]/ul/li"); String
-		 * DivisionBeSelected="Human Resources";
-		 * dhm.selectValueFromDropdown(DivisionCategory , ListOfWebElements ,
-		 * DivisionBeSelected);
-		 */
-		
-		
 		System.out.println("--");
 		
 		/*WebElement country=  driver.findElement(By.xpath("//*[@class='select-wrapper']/div[3]/div[1]/div[2]/div[1]"));
@@ -370,7 +369,97 @@ public class DBCareerDefinitions{
 		System.out.println("Lists of jobs =  " +listOfJobs.size());
 		Assertions.assertThat(listOfJobs.size()).isEqualTo(totaljobs);
 	   System.out.println("String count Matches");
+	}
 	
-}
+	@When("User enters a keyword in {string} search box")
+	public void user_enters_a_keyword_in_and_clicks_right_option_from_dropdown(String value) {
+		System.out.println("value is - " + value);
+		ExpectedValue=value;
+	    WebElement el = driver.findElement(By.xpath("//*[@id='roleKeyword']"));
+	    JavascriptExecutor js = (JavascriptExecutor)driver; 
+	    WebElement search =  driver.findElement(By.xpath("//*[@id='jobIdSearch']//following::a[1]"));
+	    js.executeScript("arguments[0].scrollIntoView()", search);
+	    el.sendKeys(value);
+	    
+	}
+	@When("User clicks on Search button")
+	public void user_clicks_on_search_button() {
+		JavascriptExecutor js = (JavascriptExecutor)driver; 
+	    WebElement search =  driver.findElement(By.xpath("//*[@id='jobIdSearch']//following::a[1]"));
+	    js.executeScript("arguments[0].click()", search);
+	}
+	@When("User validates if the result contains the keywords that user has searched")
+	public void user_validates_if_the_result_contains_the_keywords_that_user_has_searched() {
+		List<WebElement> listOfJobs=driver.findElements(By.xpath("//*[contains(@href,'professional/job')]/div/h2"));
+		if(listOfJobs.size()>0) {
+			String Actual = listOfJobs.get(0).getText();
+			Assertions.assertThat(Actual).contains(ExpectedValue);
+		}else if (listOfJobs.size()==0) {
+			System.out.println("No matching jobs found. Please refine your search criteria");
+		}
+	}
+	
+	@When("User enters a {string} in Job ID Keyword Section")
+	public void user_enters_a_in_job_id_keyword_section(String value) {
+		System.out.println("value is - " + value);
+		ExpectedValue=value;
+	    WebElement el = driver.findElement(By.xpath("//*[@id='jobIdSearch']"));
+	    JavascriptExecutor js = (JavascriptExecutor)driver; 
+	    WebElement search =  driver.findElement(By.xpath("//*[@id='jobIdSearch']//following::a[1]"));
+	    js.executeScript("arguments[0].scrollIntoView()", search);
+	    el.sendKeys(value);
+	}
+	
+	@When("User validates if the result contains the JobID that user has searched")
+	public void user_validates_if_the_result_contains_JobID_that_user_has_searched() {
+		
+		List<WebElement> listOfJobs=driver.findElements(By.xpath("//*[contains(@href,'professional/job')]/div/h2"));
+		if(listOfJobs.size()>0) {
+			listOfJobs.get(0).click();
+			//retrieve job ID
+			String val = driver.findElement(By.xpath("//*[@id='headerbox']/table/tbody/tr[1]/td[1]")).getText();
+			System.out.println("Job ID retrieved is " +val);
+			if(!val.contains(ExpectedValue)) {
+				String valuefromJobDescription = driver.findElement(By.xpath("//*[@id='db-jobad']")).getText();
+				System.out.println("Page contains Text - "+valuefromJobDescription);
+				Assertions.assertThat(valuefromJobDescription).contains(ExpectedValue);
+			}else {
+				Assertions.assertThat(val).contains(ExpectedValue);
+			}
+				
+		}else if (listOfJobs.size()==0) {
+			
+			System.out.println("No matching jobs found. Please refine your search criteria");
+		}
+	}
+	
+	@And("Verify first preference is given to jobs having searched jobID")
+	public void Verify_first_preference_is_given_to_jobs_having_searched_jobID() {
+		//Get list of all jobs on search results page
+		List<WebElement> listOfJobs=driver.findElements(By.xpath("//*[contains(@href,'professional/job')]/div/h2"));
+		if(listOfJobs.size()>0) {
+			//Click on the first job
+			listOfJobs.get(0).click();
+			//retrieve job ID from job description page
+			String val = driver.findElement(By.xpath("//*[@id='headerbox']/table/tbody/tr[1]/td[1]")).getText();
+			System.out.println("Job ID retrieved is " +val);
+			if(!val.contains(ExpectedValue)) {
+				//retrieve Job description data
+				String valuefromJobDescription = driver.findElement(By.xpath("//*[@id='db-jobad']")).getText();
+				System.out.println("Page contains Text - "+valuefromJobDescription);
+				if(!valuefromJobDescription.contains(ExpectedValue)) {
+					System.out.println("Jobs retrieved matches the Role title but does not match the Job Id entered");
+				}else {
+					Assertions.assertThat(valuefromJobDescription).contains(ExpectedValue);
+				}
+			}else {
+				Assertions.assertThat(val).contains(ExpectedValue);
+			}
+				
+		}else if (listOfJobs.size()==0) {
+			
+			System.out.println("No matching jobs found. Please refine your search criteria");
+		}
+	}
 	
 }

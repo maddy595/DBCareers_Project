@@ -6,20 +6,12 @@
   <test name="DBJobSearchTest">
 	  <parameter name="browserType" value="Chrome"></parameter>
     <classes>
-      <class name="com.db.testRunner.Runner">
-      <!-- 	<methods>
+      <class name="com.db.testRunner.SmokeRunner">
+       	<!--  <methods>
 			  <exclude name=".*"></exclude>
-		  </methods>-->
+		  </methods> -->
       </class>
     </classes>
   </test>
-  
-    <test name="DBJobSearchTestFilters">
-		<parameter name="browserType" value="Edge"></parameter>
-    <classes>
-      <class name="com.db.testRunner.Runner2"/>
-    </classes>
-  </test>
-  
 </suite>
 	
