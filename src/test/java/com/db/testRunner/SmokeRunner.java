@@ -15,18 +15,18 @@ import com.db.utils.ConfigReader;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-@CucumberOptions(features = "src/test/resources/features/jobSearchFilters.feature",
+@CucumberOptions(features = "src/test/resources/features/JobSearch.feature",
 				 glue = {"com.db.stepdefinitions"},
 						// "com.db.hooks"},
 				 plugin = {"pretty", "html:target/test-output/report.html"},
-				 tags = "@MyDatTable"
+				 tags = "@smoke"
 				// monochrome=true
 				)
-public class Runner2 extends AbstractTestNGCucumberTests{
+public class SmokeRunner extends AbstractTestNGCucumberTests{
 	
 	@Parameters("browserType")
 	@BeforeTest
-	public static void defineBrowser( String browser) throws IOException {
+	public static void defineBrowser(@Optional String browser) throws IOException {
 			ConfigReader.initializePropertyFile();
 			ConfigReader.prop.setProperty("BrowserType",browser );
 	}
