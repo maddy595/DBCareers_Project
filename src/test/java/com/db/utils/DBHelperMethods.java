@@ -11,17 +11,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.db.hooks.DBHooks;
+import com.db.stepdefinitions.DBCareerDefinitions;
 
 public class DBHelperMethods {
 	
-	public WebDriver driver;
+	public static WebDriver driver;
 	
-	public DBHelperMethods() {
+	/*public DBHelperMethods() {
     	driver = DBHooks.getDriver();
-    }
+    }*/
+	
+	/*public DBHelperMethods() {
+    	driver = DBCareerDefinitions.getDriver();
+    }*/
 	
 	public void selectValueFromDropdown(WebElement dropdownbox , By listboxxpath , String valueToBeSelected) {
-
+		driver = DBCareerDefinitions.getDriver();
 		   Actions ac = new Actions(driver);
 		   WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(20));
 		   w.until(ExpectedConditions.elementToBeClickable(dropdownbox));

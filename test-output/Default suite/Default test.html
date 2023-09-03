@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/2/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/0/2</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Sep 02 17:42:29 IST 2023</td>
+<td>Started on:</td><td>Sun Sep 03 10:55:56 IST 2023</td>
 </tr>
-<tr><td>Total time:</td><td>32 seconds (32196 ms)</td>
+<tr><td>Total time:</td><td>1 seconds (1696 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -68,46 +68,25 @@ function toggleAllBoxes() {
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
 <table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.db.testRunner.Runner.runScenario()'><b>runScenario</b><br>Test class: com.db.testRunner.Runner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section", "Search and Validate Job Openings"</td>
-<td><div><pre>io.cucumber.testng.UndefinedStepException: The step &apos;User selects &quot;Profession&quot; in Search By section&apos; is undefined.
-You can implement this step using the snippet(s) below:
-
-@When(&quot;User selects {string} in Search By section&quot;)
-public void user_selects_in_search_by_section(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
-}
-
-	at io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
-	at io.cucumber.testng.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:23)
-	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:133)
-	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:130)
-	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
-	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:130)
-	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
-	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
+<td title='com.db.testRunner.Runner2.defineBrowser()'><b>defineBrowser</b><br>Test class: com.db.testRunner.Runner2</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browserType&apos; is required by BeforeTest on method defineBrowser but has not been marked @Optional or defined
+in C:\Users\HP\AppData\Local\Temp\testng-eclipse--466676621\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+	at org.testng.TestRunner.run(TestRunner.java:589)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
@@ -121,39 +100,18 @@ public void user_selects_in_search_by_section(String string) {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1506703662", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1506703662'><pre>io.cucumber.testng.UndefinedStepException: The step &apos;User selects &quot;Profession&quot; in Search By section&apos; is undefined.
-You can implement this step using the snippet(s) below:
-
-@When(&quot;User selects {string} in Search By section&quot;)
-public void user_selects_in_search_by_section(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
-}
-
-	at io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
-	at io.cucumber.testng.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:23)
-	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:133)
-	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:130)
-	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
-	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:130)
-	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
-	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
+</pre></div><a href='#' onClick='toggleBox("stack-trace396283472", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace396283472'><pre>org.testng.TestNGException: 
+Parameter &apos;browserType&apos; is required by BeforeTest on method defineBrowser but has not been marked @Optional or defined
+in C:\Users\HP\AppData\Local\Temp\testng-eclipse--466676621\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+	at org.testng.TestRunner.run(TestRunner.java:589)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
@@ -168,42 +126,47 @@ public void user_selects_in_search_by_section(String string) {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>14</td>
-<td>com.db.testRunner.Runner@1189dd52</td></tr>
+<td>-1693718756</td>
+<td>com.db.testRunner.Runner2@7f0eb4b4</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
 <tr>
-<td title='com.db.testRunner.Runner.runScenario()'><b>runScenario</b><br>Test class: com.db.testRunner.Runner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section", "Search and Validate Job Openings"</td>
-<td><div><pre>io.cucumber.testng.UndefinedStepException: The step &apos;User selects &quot;Profession&quot; in Search By section&apos; is undefined.
-You can implement this step using the snippet(s) below:
-
-@When(&quot;User selects {string} in Search By section&quot;)
-public void user_selects_in_search_by_section(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
-}
-
-	at io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
-	at io.cucumber.testng.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:23)
-	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:133)
-	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:130)
-	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
-	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:130)
-	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
-	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
+<td title='com.db.testRunner.Runner2.QuitBrowser()'><b>QuitBrowser</b><br>Test class: com.db.testRunner.Runner2</td>
+<td></td>
+<td>-1693718758</td>
+<td>com.db.testRunner.Runner2@7f0eb4b4</td></tr>
+<tr>
+<td title='com.db.testRunner.Runner2.QuitBrowser()'><b>QuitBrowser</b><br>Test class: com.db.testRunner.Runner2</td>
+<td></td>
+<td>-1693718758</td>
+<td>com.db.testRunner.Runner2@7f0eb4b4</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.db.testRunner.Runner2.runScenario()'><b>runScenario</b><br>Test class: com.db.testRunner.Runner2<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify user is able to search jobs by Division and is able to see relevant results after applying necessary filters in Search By section", "Search and Validate Job Openings"</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browserType&apos; is required by BeforeTest on method defineBrowser but has not been marked @Optional or defined
+in C:\Users\HP\AppData\Local\Temp\testng-eclipse--466676621\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+	at org.testng.TestRunner.run(TestRunner.java:589)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
@@ -217,39 +180,18 @@ public void user_selects_in_search_by_section(String string) {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1173837542", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1173837542'><pre>io.cucumber.testng.UndefinedStepException: The step &apos;User selects &quot;Profession&quot; in Search By section&apos; is undefined.
-You can implement this step using the snippet(s) below:
-
-@When(&quot;User selects {string} in Search By section&quot;)
-public void user_selects_in_search_by_section(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
-}
-
-	at io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
-	at io.cucumber.testng.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:23)
-	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:133)
-	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:130)
-	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
-	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:130)
-	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
-	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2056234595", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2056234595'><pre>org.testng.TestNGException: 
+Parameter &apos;browserType&apos; is required by BeforeTest on method defineBrowser but has not been marked @Optional or defined
+in C:\Users\HP\AppData\Local\Temp\testng-eclipse--466676621\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+	at org.testng.TestRunner.run(TestRunner.java:589)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
@@ -264,8 +206,62 @@ public void user_selects_in_search_by_section(String string) {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>15</td>
-<td>com.db.testRunner.Runner@1189dd52</td></tr>
+<td>0</td>
+<td>com.db.testRunner.Runner2@7f0eb4b4</td></tr>
+<tr>
+<td title='com.db.testRunner.Runner2.runScenario()'><b>runScenario</b><br>Test class: com.db.testRunner.Runner2<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify user is able to search jobs by Division and is able to see relevant results after applying necessary filters in Search By section", "Search and Validate Job Openings"</td>
+<td><div><pre>org.testng.TestNGException: 
+Parameter &apos;browserType&apos; is required by BeforeTest on method defineBrowser but has not been marked @Optional or defined
+in C:\Users\HP\AppData\Local\Temp\testng-eclipse--466676621\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+	at org.testng.TestRunner.run(TestRunner.java:589)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2023917549", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2023917549'><pre>org.testng.TestNGException: 
+Parameter &apos;browserType&apos; is required by BeforeTest on method defineBrowser but has not been marked @Optional or defined
+in C:\Users\HP\AppData\Local\Temp\testng-eclipse--466676621\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParams(Parameters.java:270)
+	at org.testng.internal.Parameters.createParametersForMethod(Parameters.java:358)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:700)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:168)
+	at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:302)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+	at org.testng.TestRunner.run(TestRunner.java:589)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>0</td>
+<td>com.db.testRunner.Runner2@7f0eb4b4</td></tr>
 </table><p>
 </body>
 </html>
