@@ -20,8 +20,8 @@ import io.cucumber.testng.CucumberOptions;
 				 glue = {"com.db.stepdefinitions"},
 						// "com.db.hooks"},
 				 plugin = {"pretty", "html:target/test-output/report.html"},
-				// tags = "@smoke"
-				 tags="@Test3"
+				 tags = "@smoke"
+				// tags="@Test3"
 				// monochrome=true
 				)
 public class SmokeRunner extends AbstractDBTestNGRunner{

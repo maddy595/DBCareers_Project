@@ -21,8 +21,8 @@ import io.cucumber.testng.CucumberOptions;
 				 glue = {"com.db.stepdefinitions"},
 						// "com.db.hooks"},
 				 plugin = {"pretty", "html:target/test-output/report.html"},
-				// tags = "@regression"
-				tags = "@Test1"
+				 tags = "@regression"
+				//tags = "@Test1"
 				//monochrome=true
 				)
 public class RegressionRunner extends AbstractDBTestNGRunner{

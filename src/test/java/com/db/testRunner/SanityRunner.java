@@ -19,8 +19,8 @@ import io.cucumber.testng.CucumberOptions;
 				 glue = {"com.db.stepdefinitions"},
 						// "com.db.hooks"},
 				 plugin = {"pretty", "html:target/test-output/report.html"},
-				// tags = "@sanity"
-				 tags = "@Test2"
+				 tags = "@sanity"
+				 //tags = "@Test2"
 				// ,dryRun=true
 				 //monochrome=true
 				)
