@@ -11,13 +11,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.db.hooks.DBHooks;
+import com.db.stepdefinitions.DBCareerDefinitions;
 
 public class HelperMethods {
 	
 	public WebDriver driver;
 	
 	 public HelperMethods() {
-	    	driver = DBHooks.getDriver();
+	    	driver = DBCareerDefinitions.getDriver();
 	    }
 
 	public int extractintFromString(WebElement el) {

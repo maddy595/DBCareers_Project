@@ -15,6 +15,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -22,6 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.db.hooks.DBHooks;
+import com.db.utils.ConfigReader;
 import com.db.utils.DBHelperMethods;
 import com.db.utils.HelperMethods;
 
@@ -37,7 +40,7 @@ import org.assertj.core.api.Assertions.*;
 
 
 public class DBCareerDefinitions{
-   public WebDriver driver;
+   public static WebDriver driver;
     public final static int TIMEOUT = 50;
     public static int brokenLinksCount=0;
     public static int jobCountOnJObSearchPage;
@@ -46,13 +49,34 @@ public class DBCareerDefinitions{
     public DBHelperMethods dhm;
     
     public DBCareerDefinitions() {
-    	driver = DBHooks.getDriver();
+    //	driver = DBHooks.getDriver();
     	hm=new HelperMethods();
     	dhm = new DBHelperMethods();
-    }
+    } 
+    
+    public static WebDriver getDriver() {
+		return driver;
+	}
     
 	@Given("User is on Deutsche Bank career page")
 	public void user_is_on_deutsche_bank_career_page() {
+		String s = ConfigReader.prop.getProperty("BrowserType");
+		System.out.println(s);
+		if(s.equals("Chrome")) {
+
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\src\\test\\resources\\drivers\\chromedriver.exe");
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--remote-allow-origins=*");
+	        driver = new ChromeDriver(options);
+	        
+		}else if (s.equalsIgnoreCase("Edge")) {
+			EdgeOptions options1 = new EdgeOptions();
+			options1.addArguments("--remote-allow-origins=*");
+	        driver = new EdgeDriver(options1);
+		}
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().window().maximize();
+		
 		
 	    driver.get("https://careers.db.com");
        // WebElement shadowHost = driver.findElement(By.cssSelector("shadowHost_CSS"));
@@ -293,7 +317,8 @@ public class DBCareerDefinitions{
 				if("City".equals(es.getKey())) {
 					String cityFromJobPage = driver.findElement(By.xpath("//*[@id='headerbox']/table/tbody/tr[3]/td")).getText();
 					//cityFromJobPage.contains(es.getValue())
-					
+					System.out.println(cityFromJobPage);
+					System.out.println(es.getValue());
 					Assertions.assertThat(cityFromJobPage.contains(es.getValue())).as("City does not match").isEqualTo(true);
 					
 				}else if ("What is your availability?".equals(es.getKey())) {
