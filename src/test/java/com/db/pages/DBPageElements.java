@@ -2,6 +2,8 @@ package com.db.pages;
 
 import javax.xml.xpath.XPath;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,15 +25,22 @@ public class DBPageElements {
 	@FindBy(xpath = "//*[@id='professionals_top']/a")
 	WebElement professionalLink;
 	
-	@FindBy(xpath = "//*[@id='professionals_sub']/li[1]/a")
-	WebElement searchLink;
-	
 	public WebElement getProfessionalLink() {
 		return professionalLink;
 	}
 	
+	@FindBy(xpath = "//*[@id='professionals_sub']/li[1]/a")
+	WebElement searchLink;
+	
 	public WebElement getsearchLink() {
 		return searchLink;
 	}
+
+	@FindBy(xpath = "//*[@id='usercentrics-root']")
+	WebElement shadowRootpath;
 	
+	public WebElement getshadowRootpath() {
+		return shadowRootpath;
+	}
+
 }

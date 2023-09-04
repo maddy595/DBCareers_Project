@@ -28,7 +28,7 @@ public class DBHelperMethods {
 		    for(WebElement el1 : listbox) {
 		    	//System.out.println(el1.getText());
 		    	if(el1.getText().contains(valueToBeSelected)) {
-		    		w.until(ExpectedConditions.elementToBeClickable(el1));
+		    		//w.until(ExpectedConditions.elementToBeClickable(el1));
 		    		ac.moveToElement(el1).click().build().perform();
 		    		break;
 		    	}

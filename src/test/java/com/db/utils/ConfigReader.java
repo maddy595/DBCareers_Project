@@ -41,5 +41,9 @@ public class ConfigReader {
 		return prop.getProperty("BrowserType");
 	}
 	
+	public String getUrl() {
+		return prop.getProperty("url");
+	}
+	
 
 }
