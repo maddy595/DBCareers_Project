@@ -19,16 +19,14 @@ public class AbstractDBTestNGRunner extends AbstractTestNGCucumberTests{
 	@Parameters("browserType")
 	@BeforeTest
 	public void defineBrowser(@Optional String browser) throws IOException {
-		System.out.println("I am in Before Test#######################################################");
 		initServiceHelper = new InitServiceHelper();
 		initServiceHelper.setUp(browser);
 	}
 	
 	@AfterMethod
 	public void QuitBrowser() throws IOException {
-			//DBCareerDefinitions.driver.quit();
+		//DBCareerDefinitions.driver.quit();
 		initServiceHelper.tearDown();
-		System.out.println("I am in After Method #######################################################");
 	}
 
 }

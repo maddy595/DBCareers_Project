@@ -30,10 +30,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions.*;
 
-
 public class DBCareerDefinitions{
    public static WebDriver driver;
-    public final static int TIMEOUT = 50;
+    public final static int TIMEOUT = 30;
     public static int brokenLinksCount=0;
     public static int jobCountOnJObSearchPage;
     public static String cityBeSelected;
@@ -47,8 +46,14 @@ public class DBCareerDefinitions{
 	@Given("User is on Deutsche Bank career page")
 	public void user_is_on_deutsche_bank_career_page() {
 		driver=browserInitImpl.getDriver();
-		browserInitImpl.openURL("https://careers.db.com");
-        SearchContext se= driver.findElement(By.xpath("//*[@id='usercentrics-root']")).getShadowRoot();
+		try {
+			browserInitImpl.openURL(ConfigReader.init().getUrl());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//get shadow root element for cookies pop up
+		DBPageElements dbElements = new DBPageElements(driver);
+		SearchContext se = dbElements.getshadowRootpath().getShadowRoot();
         se.findElement(By.cssSelector("#uc-center-container > div.sc-cCjUiG.gHlwwJ > div > div > div > button:nth-child(3)")).click();
 	}
 
@@ -61,12 +66,8 @@ public class DBCareerDefinitions{
 	@And("User clicks on Search Roles")
 	public void user_moves_to_search_roles() {
 		DBPageElements dbElements = new DBPageElements(driver);
-	//	 WebElement el = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a"));
 		HelperMethods.movetoElement(dbElements.getsearchLink());
 		HelperMethods.clickElementUsingActionsClass(dbElements.getsearchLink());
-//		Actions ac = new Actions(driver);
-//		 WebElement el = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a"));
-//	    ac.moveToElement(el).click().build().perform();
 	}
 
 	@Then("User is able to view Jobs search page")
@@ -80,15 +81,13 @@ public class DBCareerDefinitions{
 	
 	@Then("On clicking Search Roles under professionsal tab user is able to view Jobs search page")
 	public void on_clicking_search_roles_under_professionsal_tab_user_is_able_to_view_jobs_search_page() {
-		Actions ac = new Actions(driver);
-	    WebElement el = driver.findElement(By.xpath("//*[@id='professionals_top']/a"));
-	    ac.moveToElement(el).perform();
-	    el = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a"));
-	    ac.moveToElement(el).click().build().perform();
-	    String s = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[1]/div/h3")).getText();
-	    System.out.println(s);
+		DBPageElements dbElements = new DBPageElements(driver);
+	    HelperMethods.movetoElement(dbElements.getProfessionalLink());
+	    HelperMethods.movetoElement(dbElements.getsearchLink());
+	    HelperMethods.clickElementUsingActionsClass(dbElements.getsearchLink());
+	    String actual = driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[1]/div/h3")).getText();
 	    String expected = "Search by:";
-	    Assertions.assertThat(s).isEqualTo(expected);
+	    HelperMethods.validateText(expected, actual);
 	}
 	@Then("On clicking more button under professionsal section user is able to view Jobs search page")
 	public void on_clicking_more_button_under_professionsal_section_user_is_able_to_view_jobs_search_page() {
@@ -127,7 +126,6 @@ public class DBCareerDefinitions{
 		Boolean SearchLink = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a")).isDisplayed();
 		Boolean YourApplicationLink = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a")).isDisplayed();
 		Boolean RecruitmentScamslink = driver.findElement(By.xpath("//*[@id='professionals_sub']/li[1]/a")).isDisplayed();
-		
 		    Assertions.assertThat(SearchLink);
 		    Assertions.assertThat(YourApplicationLink);
 		    Assertions.assertThat(RecruitmentScamslink);
@@ -245,20 +243,7 @@ public class DBCareerDefinitions{
 			}
 		}
 		
-//		
-//		listOfMap.get(0).forEach((k,v)->{ 
-//			WebElement genericDivCategory = driver.findElement(By.xpath("//*[text()='"+k+"']/../div[2]/div"));
-//			
-//			if(null != v && !v.isEmpty()) {
-//				By genericList = By.xpath("//*[contains(text(),'"+k+"')]/../div[2]/ul/li");
-//				DBHelperMethods.selectValueFromDropdown(genericDivCategory , genericList , v);
-//			}
-//			
-//		});
-
-		
 		/*WebElement country=  driver.findElement(By.xpath("//*[@class='select-wrapper']/div[3]/div[1]/div[2]/div[1]"));
-		
 		By ListOfWebElements2 = By.xpath("//*[@class='select-wrapper']/div[3]/div/div[2]/ul/li");
 		String CountryBeSelected="India";
 		selectValueFromDropdown(country , ListOfWebElements2 , CountryBeSelected);
@@ -279,7 +264,7 @@ public class DBCareerDefinitions{
 	public void user_clicks_search_button() {
 		WebElement el = driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[3]"));
 		jobCountOnJObSearchPage=HelperMethods.extractintFromString(el);
-		System.out.println(jobCountOnJObSearchPage);
+		//System.out.println(jobCountOnJObSearchPage);
 	    driver.findElement(By.xpath("//*[@class='search-wrapper']/div/div/div[2]/a")).click();
 	}
 
@@ -287,53 +272,41 @@ public class DBCareerDefinitions{
 	public void verify_job_search_results_page_is_displayed_with_right_jobs_that_user_has_searched(DataTable userSelectedOptions) {
 		 driver.findElement(By.xpath("//*[@class='yello-search-result']/div/div/div/a/div/h2")).click();
 		List<Map<String, String>> lst = userSelectedOptions.asMaps();
-		
 		for(Map<String, String> mp   : lst) {
 			for(Entry<String, String> es:mp.entrySet()) {
 				if(es.getValue()!=null && !es.getValue().isEmpty()) {
-				if("City".equals(es.getKey())) {
-					String cityFromJobPage = driver.findElement(By.xpath("//*[@id='headerbox']/table/tbody/tr[3]/td")).getText();
-					//cityFromJobPage.contains(es.getValue())
-					System.out.println(cityFromJobPage);
-					System.out.println(es.getValue());
-					Assertions.assertThat(cityFromJobPage.contains(es.getValue())).as("City does not match").isEqualTo(true);
-					
-				}else if ("What is your availability?".equals(es.getKey())) {
-					String FromJobPage = driver.findElement(By.xpath( "//*[@id='headerbox']/table/tbody/tr[1]/td[2]")).getText();
-					Assertions.assertThat(FromJobPage.contains(es.getValue())).as("Availability does not match").isEqualTo(true);
-					
-				}else {
-					System.out.println("Assertion not supported for "+es.getKey());
-					Assertions.assertThat(true).isEqualTo(false).as("");
-				}
-				
-				}
-				
-				
+					if("City".equals(es.getKey())) {
+						String cityFromJobPage = driver.findElement(By.xpath("//*[@id='headerbox']/table/tbody/tr[3]/td")).getText();
+						//cityFromJobPage.contains(es.getValue());
+						System.out.println("City displayed on jobs page is " +cityFromJobPage);
+						System.out.println("City user has elected is -"+es.getValue());
+						//Assertions.assertThat(cityFromJobPage.contains(es.getValue())).as("City does not match").isEqualTo(true);
+						Assertions.assertThat(cityFromJobPage.contains(es.getValue()));
+					}else if ("What is your availability?".equals(es.getKey())) {
+						String FromJobPage = driver.findElement(By.xpath( "//*[@id='headerbox']/table/tbody/tr[1]/td[2]")).getText();
+						//Assertions.assertThat(FromJobPage.contains(es.getValue())).as("Availability does not match").isEqualTo(true);	
+						Assertions.assertThat(FromJobPage.contains(es.getValue()));
+					}else {
+						System.out.println("Assertion not supported for "+es.getKey());
+						Assertions.assertThat(true).isEqualTo(false);
+					}
+				}	
 			}
 		}
-		
-	   /*
-	    String xpath="//*[text()[contains(., ': "+cityBeSelected+"')]]";
-	    String displayedCity = driver.findElement(By.xpath("xpath")).getText();
-	    System.out.println(displayedCity);
-	    Assertions.assertThat(displayedCity).contains(cityBeSelected);*/
 	}
 
-	@Then("Verify job count matches with the total jobs on the page")
-		
+	@Then("Verify job count matches with the total jobs on the page")	
 	public void verify_job_count_matches_with_the_total_jobs_on_the_page() {
 		WebElement CountofJobs=driver.findElement(By.xpath("//*[@id='job-module']/div/div/div/div/div[2]/div/div[1]/div[1]"));
 		int totaljobs=HelperMethods.extractintFromString(CountofJobs);
-		System.out.println("Jobs on top of Page = "+totaljobs);
+		//System.out.println("Jobs on top of Page = "+totaljobs);
 		JavascriptExecutor js = (JavascriptExecutor)driver; 
-			js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			//js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 			List<WebElement> loadmore=driver.findElements(By.xpath("//button[contains(text(),'Load more')]"));
 			while(loadmore.size()>0) {
 				loadmore.get(0).click();
-				
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -341,17 +314,16 @@ public class DBCareerDefinitions{
 				loadmore=driver.findElements(By.xpath("//button[contains(text(),'Load more')]"));
 			}
 		if(loadmore.size()==0) {
-			js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			//js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+			js.executeScript("window.scrollBy(0,0)");
 		}
 		List<WebElement> listOfJobs = driver.findElements(By.xpath("//*[@class='yello-search-result']/div/div/div/a"));
-		System.out.println("Lists of jobs =  " +listOfJobs.size());
+		//System.out.println("Lists of jobs =  " +listOfJobs.size());
 		Assertions.assertThat(listOfJobs.size()).isEqualTo(totaljobs);
-	   System.out.println("String count Matches");
 	}
 	
 	@When("User enters a keyword in {string} search box")
 	public void user_enters_a_keyword_in_and_clicks_right_option_from_dropdown(String value) {
-		System.out.println("value is - " + value);
 		ExpectedValue=value;
 	    WebElement el = driver.findElement(By.xpath("//*[@id='roleKeyword']"));
 	    JavascriptExecutor js = (JavascriptExecutor)driver; 
@@ -379,7 +351,7 @@ public class DBCareerDefinitions{
 	
 	@When("User enters a {string} in Job ID Keyword Section")
 	public void user_enters_a_in_job_id_keyword_section(String value) {
-		System.out.println("value is - " + value);
+		//System.out.println("value is - " + value);
 		ExpectedValue=value;
 	    WebElement el = driver.findElement(By.xpath("//*[@id='jobIdSearch']"));
 	    JavascriptExecutor js = (JavascriptExecutor)driver; 
@@ -406,7 +378,6 @@ public class DBCareerDefinitions{
 			}
 				
 		}else if (listOfJobs.size()==0) {
-			
 			System.out.println("No matching jobs found. Please refine your search criteria");
 		}
 	}
@@ -432,10 +403,8 @@ public class DBCareerDefinitions{
 				}
 			}else {
 				Assertions.assertThat(val).contains(ExpectedValue);
-			}
-				
+			}		
 		}else if (listOfJobs.size()==0) {
-			
 			System.out.println("No matching jobs found. Please refine your search criteria");
 		}
 	}

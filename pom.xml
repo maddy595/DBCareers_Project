@@ -97,9 +97,10 @@
           <version>2.22.1</version>
           <configuration>
           	<suiteXmlFiles>
-           		 <suiteXmlFile>Smoke_testNG.xml</suiteXmlFile>
+           		<!-- <suiteXmlFile>Smoke_testNG.xml</suiteXmlFile>
            		 <suiteXmlFile>Sanity_testNG.xml</suiteXmlFile>
-           		 <suiteXmlFile>Regression_testNG.xml</suiteXmlFile>
+           		 <suiteXmlFile>Regression_testNG.xml</suiteXmlFile> -->
+           		 <suiteXmlFile>${testNGXMLFIlePath}</suiteXmlFile>
           	</suiteXmlFiles>
         </configuration>
         </plugin>

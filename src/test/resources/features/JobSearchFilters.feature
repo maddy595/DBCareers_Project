@@ -28,9 +28,9 @@ Feature: Search and Validate Job Openings
       | <city> | Full-time                  |
 
     Examples: 
-      | div_category   | country | city   | corporate_title          | job_type  | availability |
-      | Corporate Bank | India   | Mumbai | Assistant Vice President | Permanent | Full time    |
-      | Chairman       | India   | Pune   |                          |           |              |
+      | div_category   | country | city      | corporate_title          | job_type  | availability |
+      | Corporate Bank | India   | Mumbai    | Assistant Vice President | Permanent | Full time    |
+      | Chairman       | Germany | Frankfurt |                          |           |              |
 
   @regression @Test7
   Scenario Outline: Verify user is able to search jobs by Profession and is able to see relevant results after applying necessary filters in Search By section

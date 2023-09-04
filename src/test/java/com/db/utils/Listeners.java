@@ -9,7 +9,7 @@ public class Listeners implements ITestListener{
 	@Override
 	public void onStart(ITestContext context) {
 		System.out.println(context.getName());
-		System.out.println("Suite validation Started");
+		System.out.println("Execution for - " +context.getName() +" has Started");
 	}
 	
 	@Override
@@ -21,6 +21,13 @@ public class Listeners implements ITestListener{
 	@Override
 	public void onFinish(ITestContext context) {
 		System.out.println("Suite execution finished");
+	}
+	
+	@Override
+	public void onTestFailure(ITestResult result) {
+		if(result.getStatus()==result.FAILURE) {
+			HelperMethods.getScreenshot();
+		}
 	}
 	
 	

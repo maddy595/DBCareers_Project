@@ -25,6 +25,5 @@ public class InitServiceHelper {
 			browserInitImpl.getDriver().quit();
 			BrowserInitImpl.setDriver(null);
 		}
-		
     }
 }
